@@ -34,7 +34,9 @@ int main(int argc, char **argv)
 
     geometry->addPrimitiveSet(new osg::DrawArrays(GL_QUADS, 0, 4));
 
-    viewer.setSceneData(geometry);
+    osg::ref_ptr<osg::Geode> geode = new osg::Geode;
+    geode->addDrawable(geometry.get());
+    viewer.setSceneData(geode);
 
     return viewer.run();
 }
